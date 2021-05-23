@@ -18,13 +18,11 @@ public class PersonDtoConverter  {
 
     public PersonDto entityDto(Person person) {
         PersonDto dto=mapper.map(person,PersonDto.class);
-        PersonDto personDto = new PersonDto();
         return dto;
     }
 
     public Person dtoToEntity(PersonDto personDto){
-      Person person = new Person();
-      Person person1 =mapper.map(personDto,Person.class);
+      Person person =mapper.map(personDto,Person.class);
       return person;
     }
 }
