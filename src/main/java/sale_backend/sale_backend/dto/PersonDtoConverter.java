@@ -1,28 +1,25 @@
 package sale_backend.sale_backend.dto;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sale_backend.sale_backend.domain.Person;
 import sale_backend.sale_backend.repository.PersonRepository;
-import sale_backend.sale_backend.service.PersonService;
+
 
 @Service
-public class PersonDtoConverter  {
+public class PersonDtoConverter {
+    @Autowired
     ModelMapper mapper;
+    @Autowired
     PersonRepository personRepository;
 
-    public PersonDtoConverter(PersonRepository personRepository, ModelMapper  mapper) {
-        this.mapper = mapper;
-        this.personRepository = personRepository;
-    }
-
     public PersonDto entityDto(Person person) {
-        PersonDto dto=mapper.map(person,PersonDto.class);
-        return dto;
+        return mapper.map(person, PersonDto.class);
+
     }
 
-    public Person dtoToEntity(PersonDto personDto){
-      Person person =mapper.map(personDto,Person.class);
-      return person;
+    public Person dtoToEntity(PersonDto personDto) {
+        return mapper.map(personDto, Person.class);
     }
 }
