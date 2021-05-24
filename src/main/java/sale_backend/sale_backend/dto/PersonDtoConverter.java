@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import sale_backend.sale_backend.domain.Person;
 import sale_backend.sale_backend.repository.PersonRepository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Service
 public class PersonDtoConverter {
@@ -21,5 +24,21 @@ public class PersonDtoConverter {
 
     public Person dtoToEntity(PersonDto personDto) {
         return mapper.map(personDto, Person.class);
+    }
+
+    public List<PersonDto> dtoToEntityFindAll(List<Person> personDto) {
+
+        return personDto
+                .stream()
+                .map(dtos -> mapper.map(dtos, PersonDto.class))
+                .collect(Collectors.toList());
+    }
+
+
+    public List<Person> entityToDtoFindAll(List<PersonDto> personDtos) {
+        return personDtos
+                .stream().
+                        map(persons -> mapper.map(persons, Person.class)).
+                        collect((Collectors.toList()));
     }
 }

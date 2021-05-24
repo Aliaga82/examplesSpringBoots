@@ -46,8 +46,9 @@ public class LibrarryController {
     }
 
     @GetMapping("/person/findAll")
-    public List<Person> finAllPerson() {
-        return personService.findAll();
+    public List<PersonDto> finAllPerson() {
+        List<Person> persons = personService.findAll();
+        return  personDtoConverter.dtoToEntityFindAll(persons);
     }
 }
 
