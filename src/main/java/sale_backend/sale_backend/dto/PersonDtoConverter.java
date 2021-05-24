@@ -27,13 +27,11 @@ public class PersonDtoConverter {
     }
 
     public List<PersonDto> dtoToEntityFindAll(List<Person> personDto) {
-
         return personDto
                 .stream()
                 .map(dtos -> mapper.map(dtos, PersonDto.class))
                 .collect(Collectors.toList());
     }
-
 
     public List<Person> entityToDtoFindAll(List<PersonDto> personDtos) {
         return personDtos
