@@ -12,6 +12,7 @@ import sale_backend.sale_backend.service.ChildService;
 import sale_backend.sale_backend.service.MerchadiseGroupService;
 import sale_backend.sale_backend.service.PersonService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -36,7 +37,7 @@ public class LibrarryController {
     }
 
     @PostMapping(value = "/save")
-    public PersonDto save(@RequestBody PersonDto personDto) {
+    public PersonDto save(@Valid @RequestBody PersonDto personDto) {
         Person person=personDtoConverter.dtoToEntity(personDto);
         return personDtoConverter.entityDto(person);
     }

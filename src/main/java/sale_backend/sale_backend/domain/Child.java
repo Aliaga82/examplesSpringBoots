@@ -6,11 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "t_child")
 public class Child extends AbstractInfo {
     private String childName;
+
+    @NotNull
+    @Min(18)
     private int childAge;
 
 

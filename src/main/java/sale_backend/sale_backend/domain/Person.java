@@ -1,6 +1,8 @@
 package sale_backend.sale_backend.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -9,11 +11,19 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NotBlank(message = "Ad is mecburidir")
     private String name;
+
     private String surname;
+
     private String fatherName;
+
+    @Email(message = "mail vacibdir")
+    private String email;
     @Transient
     private String SID;
+
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     private List<Adresses> adresses;
 
@@ -46,6 +56,14 @@ public class Person {
 
     public String getSurname() {
         return surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setSurname(String surname) {

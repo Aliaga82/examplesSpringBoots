@@ -8,6 +8,7 @@ public class PersonDto {
     private String name;
     private String surname;
     private String fatherName;
+    private String email;
 
     }
 
