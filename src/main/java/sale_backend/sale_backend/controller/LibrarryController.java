@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.*;
 import sale_backend.sale_backend.domain.Child;
 import sale_backend.sale_backend.domain.MerchadiseGroup;
 import sale_backend.sale_backend.domain.Person;
+import sale_backend.sale_backend.dto.ChildDto;
 import sale_backend.sale_backend.dto.PersonDto;
-import sale_backend.sale_backend.dto.PersonDtoConverter;
+import sale_backend.sale_backend.service.CommonDtoConverter;
 import sale_backend.sale_backend.service.ChildService;
 import sale_backend.sale_backend.service.MerchadiseGroupService;
 import sale_backend.sale_backend.service.PersonService;
@@ -26,7 +27,7 @@ public class LibrarryController {
     ChildService childService;
 
     @Autowired
-    PersonDtoConverter personDtoConverter;
+    CommonDtoConverter personDtoConverter;
 
 
     @GetMapping(value = "/findAll")
@@ -41,8 +42,10 @@ public class LibrarryController {
     }
 
     @GetMapping("/child/findAll")
-    public List<Child> findAllchild() {
-        return childService.findAll();
+    public List<ChildDto> findAllchild() {
+       List<Child> child =childService.findAll();
+       return personDtoConverter.childDtoEntity(child);
+
     }
 
     @GetMapping("/person/findAll")

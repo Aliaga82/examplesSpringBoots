@@ -1,9 +1,12 @@
-package sale_backend.sale_backend.dto;
+package sale_backend.sale_backend.service;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sale_backend.sale_backend.domain.Child;
 import sale_backend.sale_backend.domain.Person;
+import sale_backend.sale_backend.dto.ChildDto;
+import sale_backend.sale_backend.dto.PersonDto;
 import sale_backend.sale_backend.repository.PersonRepository;
 
 import java.util.List;
@@ -11,7 +14,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class PersonDtoConverter {
+public class CommonDtoConverter {
     @Autowired
     ModelMapper mapper;
     @Autowired
@@ -38,5 +41,11 @@ public class PersonDtoConverter {
                 .stream().
                         map(persons -> mapper.map(persons, Person.class)).
                         collect((Collectors.toList()));
+    }
+    public List<ChildDto> childDtoEntity(List<Child> children){
+        return children
+                .stream()
+                .map((child -> mapper.map(child,ChildDto.class)))
+                .collect(Collectors.toList());
     }
 }
