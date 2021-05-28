@@ -1,10 +1,11 @@
 package sale_backend.sale_backend.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "t_adress")
-public class Adresses {
+public class Adresses implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

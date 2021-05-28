@@ -1,5 +1,9 @@
 server:
   port: 8081
+  servlet:
+    contextPath: /sale_backend
+    sentry:
+      dsn: https://b634809d661f4c4e97f9d1eadd794d48@o554395.ingest.sentry.io/5790885
 spring:
   jpa:
     hibernate:
