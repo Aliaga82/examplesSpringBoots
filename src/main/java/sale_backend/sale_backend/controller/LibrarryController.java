@@ -5,12 +5,11 @@ import org.springframework.web.bind.annotation.*;
 import sale_backend.sale_backend.domain.Child;
 import sale_backend.sale_backend.domain.MerchadiseGroup;
 import sale_backend.sale_backend.domain.Person;
+import sale_backend.sale_backend.domain.User;
 import sale_backend.sale_backend.dto.ChildDto;
 import sale_backend.sale_backend.dto.PersonDto;
-import sale_backend.sale_backend.service.CommonDtoConverter;
-import sale_backend.sale_backend.service.ChildService;
-import sale_backend.sale_backend.service.MerchadiseGroupService;
-import sale_backend.sale_backend.service.PersonService;
+import sale_backend.sale_backend.dto.UserDto;
+import sale_backend.sale_backend.service.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -29,6 +28,9 @@ public class LibrarryController {
 
     @Autowired
     CommonDtoConverter personDtoConverter;
+
+    @Autowired
+    UserSerice userSerice;
 
 
     @GetMapping(value = "/findAll")
@@ -53,6 +55,17 @@ public class LibrarryController {
     public List<PersonDto> finAllPerson() {
         List<Person> persons = personService.findAll();
         return  personDtoConverter.dtoToEntityFindAll(persons);
+    }
+
+    @PostMapping("/user/save")
+    public UserDto saveuserDto(@RequestBody UserDto userDto){
+         User user= personDtoConverter.dtoToUser(userDto);
+         return  personDtoConverter.userToDto(user);
+    }
+
+    @PostMapping("/sendMail/{username}")
+    public void sendMail(@PathVariable String username){
+        userSerice.resetPasswordByUserEmail(username);
     }
 }
 

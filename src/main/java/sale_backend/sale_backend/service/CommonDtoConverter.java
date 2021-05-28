@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sale_backend.sale_backend.domain.Child;
 import sale_backend.sale_backend.domain.Person;
+import sale_backend.sale_backend.domain.User;
 import sale_backend.sale_backend.dto.ChildDto;
 import sale_backend.sale_backend.dto.PersonDto;
+import sale_backend.sale_backend.dto.UserDto;
 import sale_backend.sale_backend.repository.PersonRepository;
 
 import java.util.List;
@@ -20,9 +22,15 @@ public class CommonDtoConverter {
     @Autowired
     PersonRepository personRepository;
 
-    public PersonDto entityDto(Person person) {
-        return mapper.map(person, PersonDto.class);
+    @Autowired
+    PersonService personService;
 
+    @Autowired
+    UserSerice userSerice;
+
+    public PersonDto entityDto(Person person) {
+        personService.saveperson(person);
+        return mapper.map(person, PersonDto.class);
     }
 
     public Person dtoToEntity(PersonDto personDto) {
@@ -42,10 +50,21 @@ public class CommonDtoConverter {
                         map(persons -> mapper.map(persons, Person.class)).
                         collect((Collectors.toList()));
     }
-    public List<ChildDto> childDtoEntity(List<Child> children){
+
+    public List<ChildDto> childDtoEntity(List<Child> children) {
         return children
                 .stream()
-                .map((child -> mapper.map(child,ChildDto.class)))
+                .map((child -> mapper.map(child, ChildDto.class)))
                 .collect(Collectors.toList());
     }
+
+    public UserDto userToDto(User user) {
+        userSerice.save(user);
+        return mapper.map(user, UserDto.class);
+    }
+
+    public User dtoToUser(UserDto userDto) {
+        return mapper.map(userDto, User.class);
+    }
+
 }

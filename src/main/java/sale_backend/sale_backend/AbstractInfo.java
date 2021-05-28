@@ -11,6 +11,5 @@ public class AbstractInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     private Long id;
-    private String info;
 
 }

@@ -11,3 +11,22 @@ spring:
     url: jdbc:mysql://localhost:3306/sale?useSSL=false&createDatabaseIfNotExist=true
     username: root
     password: 3141593
+  mail:
+    default-encoding: UTF-8
+    host: smtp.mail.ru
+    username: aliaga-82@mail.ru
+    password: qarderob123
+    port: 465
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
+    servlet:
+      multipart:
+        enabled: true
+        max-file-size: 100MB
+        max-request-size: 100MB
