@@ -67,5 +67,15 @@ public class LibrarryController {
     public void sendMail(@PathVariable String username){
         userSerice.resetPasswordByUserEmail(username);
     }
+
+    @GetMapping ("/person/findBy/{id}")
+    public PersonDto findbyId(@PathVariable Long id){
+       return personDtoConverter.dtofindById(id);
+    }
+
+    @GetMapping("/child/findById/{id}")
+    public ChildDto findById(@PathVariable Long id){
+        return personDtoConverter.childDtobyId(id);
+    }
 }
 

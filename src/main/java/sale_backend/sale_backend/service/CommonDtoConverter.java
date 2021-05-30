@@ -28,6 +28,9 @@ public class CommonDtoConverter {
     @Autowired
     UserSerice userSerice;
 
+    @Autowired
+    ChildService childService;
+
     public PersonDto entityDto(Person person) {
         personService.saveperson(person);
         return mapper.map(person, PersonDto.class);
@@ -66,5 +69,13 @@ public class CommonDtoConverter {
     public User dtoToUser(UserDto userDto) {
         return mapper.map(userDto, User.class);
     }
+    public PersonDto dtofindById(long id){
+        Person person= personService.findById(id);
+        return mapper.map(person,PersonDto.class);
+    }
 
+    public ChildDto childDtobyId(long id){
+        Child child = childService.findById(id);
+        return mapper.map(child,ChildDto.class);
+    }
 }

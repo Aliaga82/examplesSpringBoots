@@ -19,4 +19,7 @@ public class ChildService {
     public List<Child> findAll() {
         return childRepository.findAll();
     }
+    public Child findById(Long id){
+        return childRepository.findById(id).orElse(null);
+    }
 }
