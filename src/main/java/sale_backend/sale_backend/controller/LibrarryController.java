@@ -6,6 +6,7 @@ import sale_backend.sale_backend.domain.Child;
 import sale_backend.sale_backend.domain.MerchadiseGroup;
 import sale_backend.sale_backend.domain.Person;
 import sale_backend.sale_backend.domain.User;
+import sale_backend.sale_backend.domain.accounting.Currency;
 import sale_backend.sale_backend.dto.ChildDto;
 import sale_backend.sale_backend.dto.PersonDto;
 import sale_backend.sale_backend.dto.UserDto;
@@ -31,6 +32,9 @@ public class LibrarryController {
 
     @Autowired
     UserSerice userSerice;
+
+    @Autowired
+    CurrencyService currencyService;
 
 
     @GetMapping(value = "/findAll")
@@ -76,6 +80,10 @@ public class LibrarryController {
     @GetMapping("/child/findById/{id}")
     public ChildDto findById(@PathVariable Long id){
         return personDtoConverter.childDtobyId(id);
+    }
+    @GetMapping("/currency/findAll")
+    public List<Currency>findAllCurrency(){
+       return currencyService.findAll();
     }
 }
 

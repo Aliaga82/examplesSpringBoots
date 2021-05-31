@@ -12,5 +12,6 @@ public class AbstractInfo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     private Long id;
+    private String info;
 
 }
