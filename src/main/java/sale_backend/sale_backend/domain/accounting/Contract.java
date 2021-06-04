@@ -16,4 +16,8 @@ public class Contract extends AbstractInfo {
     private Company company;
 
     private Date insertDate;
+
+    @ManyToOne
+    private DeleteAction deleteAction;
+
 }

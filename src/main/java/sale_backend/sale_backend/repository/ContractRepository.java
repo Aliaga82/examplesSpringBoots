@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ContractRepository extends CrudRepository <Contract, Long> {
      List<Contract>findAll();
+     Contract findContractById(Long id);
 }

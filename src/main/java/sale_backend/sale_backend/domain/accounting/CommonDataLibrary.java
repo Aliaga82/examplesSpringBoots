@@ -15,8 +15,9 @@ public class CommonDataLibrary {
     public List<DeleteAction> findAllDeletions(){
         List<DeleteAction> deleteActions = new ArrayList<>();
         deleteActions.add(new DeleteAction(1,"Ehtiyac yaranmadi"));
-        deleteActions.add(new DeleteAction(1,"Shirket legv etdi"));
-        deleteActions.add(new DeleteAction(1,"Imtina etdi"));
+        deleteActions.add(new DeleteAction(2,"Shirket legv etdi"));
+        deleteActions.add(new DeleteAction(3,"Imtina etdi"));
+        deleteActions.add(new DeleteAction(4,"Pulu olmadi kartda"));
         return deleteActions;
     }
 

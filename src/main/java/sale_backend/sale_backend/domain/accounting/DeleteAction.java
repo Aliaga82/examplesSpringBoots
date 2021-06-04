@@ -13,6 +13,6 @@ import javax.persistence.*;
 public class DeleteAction  {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String info;
 }
