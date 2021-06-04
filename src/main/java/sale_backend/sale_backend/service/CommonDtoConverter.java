@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import sale_backend.sale_backend.domain.Child;
 import sale_backend.sale_backend.domain.Person;
 import sale_backend.sale_backend.domain.User;
-import sale_backend.sale_backend.dto.ChildDto;
-import sale_backend.sale_backend.dto.PersonDto;
-import sale_backend.sale_backend.dto.UserDto;
+import sale_backend.sale_backend.domain.accounting.Company;
+import sale_backend.sale_backend.domain.accounting.Contract;
+import sale_backend.sale_backend.dto.*;
 import sale_backend.sale_backend.repository.PersonRepository;
 
 import java.util.List;
@@ -30,6 +30,12 @@ public class CommonDtoConverter {
 
     @Autowired
     ChildService childService;
+
+    @Autowired
+    CompanyService companyService;
+
+    @Autowired
+    ContractService contractService;
 
     public PersonDto entityDto(Person person) {
         personService.saveperson(person);
@@ -77,5 +83,23 @@ public class CommonDtoConverter {
     public ChildDto childDtobyId(long id){
         Child child = childService.findById(id);
         return mapper.map(child,ChildDto.class);
+    }
+
+    public CompanyDto companytoDto(Company company){
+        companyService.save(company);
+        return mapper.map(company,CompanyDto.class);
+    }
+
+    public Company dtoToCompamny(CompanyDto companyDto){
+        return mapper.map(companyDto, Company.class);
+    }
+
+    public ContractDto comContractDto(Contract comContract){
+        contractService.save(comContract);
+        return mapper.map(comContract, ContractDto.class);
+    }
+
+    public Contract contractDto(ContractDto contractDto){
+        return mapper.map(contractDto, Contract.class);
     }
 }

@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 
 import java.time.ZonedDateTime;
 
-public class ApiExeption {
+public class ApiExeption  {
     private final String error;
     private final HttpStatus httpStatus;
     private final ZonedDateTime zonedDateTime;
