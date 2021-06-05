@@ -57,8 +57,8 @@ public class CompanyContractRestController {
         return commonDtoConverter.comContractDto(contract);
     }
 
-    @PostMapping (value ="/deleted/{id}/{conratcID}")
-    public void deletedActionSet(@PathVariable Long id, @PathVariable Long conratcID){
-        contractService.saveFinByDeletedReason(id,conratcID);
+    @PostMapping (value ="/deleted/{deletedId}/{conratcID}")
+    public void deletedActionSet(@PathVariable Long deletedId, @PathVariable Long conratcID){
+        contractService.saveFinByDeletedReason(deletedId,conratcID);
     }
 }

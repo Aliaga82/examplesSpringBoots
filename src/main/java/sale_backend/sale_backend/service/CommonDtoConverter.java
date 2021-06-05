@@ -63,7 +63,7 @@ public class CommonDtoConverter {
     public List<ChildDto> childDtoEntity(List<Child> children) {
         return children
                 .stream()
-                .map((child -> mapper.map(child, ChildDto.class)))
+                .map(child -> mapper.map(child, ChildDto.class))
                 .collect(Collectors.toList());
     }
 
