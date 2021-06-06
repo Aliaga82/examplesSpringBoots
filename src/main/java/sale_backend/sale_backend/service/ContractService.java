@@ -1,6 +1,7 @@
 package sale_backend.sale_backend.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import sale_backend.sale_backend.domain.accounting.Contract;
 import sale_backend.sale_backend.domain.accounting.DeleteAction;

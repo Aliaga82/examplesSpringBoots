@@ -1,17 +1,22 @@
 package sale_backend.sale_backend.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import sale_backend.sale_backend.AbstractInfo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Table(name = "t_user")
-public class User extends AbstractInfo {
+public class User  {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private int id;
     private String username;
     private String password;
 }

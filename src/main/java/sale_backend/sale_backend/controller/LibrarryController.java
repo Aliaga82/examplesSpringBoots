@@ -61,15 +61,11 @@ public class LibrarryController {
         return  personDtoConverter.dtoToEntityFindAll(persons);
     }
 
-    @PostMapping("/user/save")
-    public UserDto saveuserDto(@RequestBody UserDto userDto){
-         User user= personDtoConverter.dtoToUser(userDto);
-         return  personDtoConverter.userToDto(user);
-    }
+
 
     @PostMapping("/sendMail/{username}")
     public void sendMail(@PathVariable String username){
-        userSerice.resetPasswordByUserEmail(username);
+        //userSerice.resetPasswordByUserEmail(username);
     }
 
     @GetMapping ("/person/findBy/{id}")
