@@ -7,10 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import sale_backend.sale_backend.domain.User;
 
-import java.util.*;
-
+import java.util.Base64;
+import java.util.Date;
+import java.util.UUID;
 @Service
 public class JwtGenerated {
     private static final Logger logger = LoggerFactory.getLogger(JwtGenerated.class);
@@ -18,7 +18,7 @@ public class JwtGenerated {
 
     private int jwtExpirationInMs = 86400000;
 
-    public String generateToken(User user) {
+    public String generateToken(UserDetails user) {
         return generateTokenByUserName(user.getUsername());
     }
 
@@ -39,9 +39,6 @@ public class JwtGenerated {
                 .compact();
     }
 
-    public String userDetatls(UserDetails userDetails){
-         return generateToken(userDetails.getUsername());
-    }
 
     public String generateToken(String user) {
         String jwtSecret = convert(UUID.randomUUID().toString());

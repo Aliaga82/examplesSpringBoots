@@ -68,8 +68,7 @@ public class CommonDtoConverter {
     }
 
     public UserDto userToDto(User user) {
-        userSerice.save(user);
-        return mapper.map(user, UserDto.class);
+        return mapper.map(userSerice.save(user), UserDto.class);
     }
 
     public User dtoToUser(UserDto userDto) {
@@ -86,12 +85,11 @@ public class CommonDtoConverter {
     }
 
     public CompanyDto companytoDto(Company company){
-        companyService.save(company);
-        return mapper.map(company,CompanyDto.class);
+        return mapper.map(companyService.save(null),CompanyDto.class);
     }
 
     public Company dtoToCompamny(CompanyDto companyDto){
-        return mapper.map(companyDto, Company.class);
+        return  mapper.map(companyDto, Company.class);
     }
 
     public ContractDto comContractDto(Contract comContract){

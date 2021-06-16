@@ -17,9 +17,9 @@ import sale_backend.sale_backend.security.UserAuthocentateResponse;
 import sale_backend.sale_backend.security.UserSecurity;
 import sale_backend.sale_backend.service.CommonDtoConverter;
 
-
-@RestController
 @RequestMapping("/user")
+@RestController
+
 public class UserController {
 
     @Autowired
@@ -35,21 +35,20 @@ public class UserController {
     CommonDtoConverter commonDtoConverter;
 
     @PostMapping(value = "/")
-    public ResponseEntity  createAUntenticateToken(@RequestBody UserDto userDto)  throws IllegalArgumentException{
+    public ResponseEntity <?> createAUntenticateToken(@RequestBody User userDto)  throws IllegalArgumentException{
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDto.getUsername(), userDto.getPassword()));
         } catch (BadCredentialsException e){
             throw new IllegalArgumentException("Sehv user name",e);
         }
           final UserDetails userDetails =userSecurity.loadUserByUsername(userDto.getUsername());
-          final String jwt = jwtGeerated.userDetatls(userDetails);
-
-        return  ResponseEntity.ok(new UserAuthocentateResponse(jwt));
+           final String jwt = jwtGeerated.generateToken(userDetails);
+           return  ResponseEntity.ok(new UserAuthocentateResponse(jwt));
      }
 
-    @PostMapping("/save")
-    public UserDto saveuserDto(@RequestBody UserDto userDto){
+     @PostMapping("/save")
+      public UserDto saveuserDto(@RequestBody UserDto userDto){
         User user= commonDtoConverter.dtoToUser(userDto);
         return  commonDtoConverter.userToDto(user);
-    }
+      }
     }

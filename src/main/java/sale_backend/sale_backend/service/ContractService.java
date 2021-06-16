@@ -1,6 +1,7 @@
 package sale_backend.sale_backend.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import sale_backend.sale_backend.domain.accounting.Contract;
@@ -24,7 +25,7 @@ public class ContractService {
     }
 
     public Contract findById(Long id) {
-        return contractRepository.findById(id).orElse(null);
+        return contractRepository.findById(id).orElseThrow(()->new ApiRequesExeption("Tapilmasdi"));
     }
 
     public List<Contract> findAll() {
@@ -32,7 +33,7 @@ public class ContractService {
     }
 
     public void saveFinByDeletedReason(long deleteIid, long conratcID) {
-        DeleteAction action = deleteActionRepository.findById(deleteIid).orElse(null);
+        DeleteAction action = deleteActionRepository.findById(deleteIid).orElseThrow(()-> new ApiRequesExeption("Tapilmadi"));
         Contract contract = findById(conratcID);
         if (contract.getDeleteAction() == null)  {
             contract.setDeleteAction(action);

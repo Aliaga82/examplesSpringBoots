@@ -45,6 +45,11 @@ public class CompanyContractRestController {
     public Contract findByContractId(@PathVariable Long id){
         return contractService.findById(id);
     }
+    @PostMapping  (value = "/company/save")
+    public CompanyDto saveCompany(@RequestBody CompanyDto companyDto){
+        Company company =commonDtoConverter.dtoToCompamny(companyDto);
+        return commonDtoConverter.companytoDto(company);
+    }
 
     @GetMapping(value =  "/findAllCntract")
     public List<Contract>findAllContract(){
@@ -59,6 +64,7 @@ public class CompanyContractRestController {
 
     @PostMapping (value ="/deleted/{deletedId}/{conratcID}")
     public void deletedActionSet(@PathVariable Long deletedId, @PathVariable Long conratcID){
-        contractService.saveFinByDeletedReason(deletedId,conratcID);
+        contractService.saveFinByDeletedReason(
+                deletedId,conratcID);
     }
 }
